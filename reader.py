@@ -2,11 +2,12 @@
 class Library:
 
 	def __init__(self, file_name):
+		self._primer_library = {}
 		self._barcode_library = {}
 		self.libraries = file_name
 
 	def __str__(self):
-		return "{}".format(self.barcode_library)
+		return "Barcodes: {}\nPrimers: {}".format(self.barcode_library, self.primer_library)
 	
 	@property
 	def libraries(self):
@@ -18,16 +19,27 @@ class Library:
 		for line in f:
 			if "[barcodes]" in line:
 				line = next(f)
-				while "[" not in line:
-					#print(type(line))
-					line = line.rstrip().split(" ") #watch out for docs with tabs.
-					#print(line)
+				while True:
+					line = line.rstrip().split(" ") #watch out for tabs.
 					try:
 						self.barcode_library = line[0], line[1] #watch out for double or more spaces between id and sequence.
 						line = next(f)
 					except IndexError:
-						print("End of barcode Reading")
+						print("End of barcode reading")
 						break
+			elif "[primers]" in line:
+				line = next(f)
+				while True:
+					
+					line = line.rstrip().split(" ") #watch out for tabs.
+					#print(line)
+					try:
+						self.primer_library = line[0], line[1] #watch out for double or more spaces between id and sequence.
+						line = next(f)
+					except IndexError:
+						print("End of primer reading")
+						break
+				
 
 	@property
 	def barcode_library(self):
@@ -35,9 +47,10 @@ class Library:
 
 	@barcode_library.setter
 	def barcode_library(self, key_value):
+		#print("here")
 		key, value = key_value
 		self._barcode_library[key] = value
-		print(self.barcode_library)
+		#print(self.barcode_library)
 	
 	@property
 	def primer_library(self):
@@ -46,11 +59,12 @@ class Library:
 	@primer_library.setter
 	def primer_library(self, key_value):
 		key, value = key_value
-		self._primer_library = {}
 		self._primer_library[key] = value
+		#print(self._primer_library)
 	
 
 #Library.barcode_library = "config.txt"
-libraries = Library("config.txt")
-print(libraries.barcode_library)
+#libraries = Library("config.txt")
+#print(libraries.barcode_library)
+#print(libraries.primer_library)
 
