@@ -6,7 +6,7 @@ class Config:
 	def __init__(self, file_name):
 		self._primer_config = {}
 		self._barcode_config = {}
-		self.libraries = "config.txt"#file_name
+		self.libraries = file_name
 
 	def __str__(self):
 		return "Barcodes: {}\nPrimers: {}".format(self.barcode_config, self.primer_config)
