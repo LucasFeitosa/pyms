@@ -1,3 +1,4 @@
+import re
 import itertools
 
 
@@ -19,6 +20,8 @@ class Config:
 	def libraries(self, file_name):
 		barcode_list = []
 		new_barcode_list = []
+		primer_list_f = []
+		primer_list_r = []
 		reading_barcodes = False
 		reading_primers = False
 		f = open(file_name, "r")
@@ -51,20 +54,39 @@ class Config:
 						reading_barcodes = False
 						print("End of barcode reading")
 						self.barcode_config = barcode_list
+						
 			elif "[primers]" in line or reading_primers:
 				if not reading_primers:
 					line = next(f)
+					print(line.rstrip().split("_"))
+					#print(a)
+					if re.match("F", line.rstrip().split("_")[1]):
+						previous_orientation = "F"
+					elif re.match("R", line.rstrip().split("_")[1]):
+						previous_orientation = "R"
 					reading_primers = True
 				#if "[" not in line:
-				try:
-					#print(line)
-					line = line.rstrip().split(" ") #watch out for tabs.
-						#print(line)
-					
-					self.primer_config = line[0], line[1] #watch out for double or more spaces between id and sequence.
-				except IndexError:
-					reading_primers = False
-					print("End of primer reading")
+				#print(line)
+				if len(line) > 1:
+					current_orientation = line.rstrip().split("_")[1].split(" ")[0]
+					print(current_orientation)
+					line = line.rstrip().split(" ")
+				
+				if current_orientation == previous_orientation and len(line) > 1:
+					if current_orientation == "F":
+						primer_list_f.append(line)
+					elif current_orientation == "R":
+						primer_list_r.append(line)
+				else:
+					if len(line) > 1:
+						if current_orientation == "F":
+							primer_list_f.append(line)
+						elif current_orientation == "R":
+							primer_list_r.append(line)
+						previous_orientation = current_orientation
+					else:
+						reading_primers = False
+						self.primer_config = primer_list_f, primer_list_r #watch out for double or more spaces
 				#else:
 				#	reading_primers = False
 				#line = next(f)
@@ -95,9 +117,15 @@ class Config:
 		return self._primer_config
 	
 	@primer_config.setter
-	def primer_config(self, key_value):
-		key, value = key_value
-		self._primer_config[key] = value
+	def primer_config(self, primer_list):
+		foward_list = primer_list[0]
+		reverse_list = primer_list[1]
+		for foward_primer in foward_list:
+			print(foward_primer)
+			for reverse_primer in reverse_list:
+				if re.match(foward_primer[0][:-1],reverse_primer[0][:-1]):
+					print(reverse_primer)
+					self._primer_config[foward_primer[0][:-2]] = [foward_primer[1], reverse_primer[1]]
 		
 	
 
