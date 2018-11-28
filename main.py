@@ -37,7 +37,7 @@ class Library:
 	def barcode_library(self, key_value):
 		key, value = key_value
 		self._barcode_library[key] = value
-		print(self.barcode_library)
+		#print(self.barcode_library)
 	
 	@property
 	def primer_library(self):
@@ -52,5 +52,5 @@ class Library:
 
 #Library.barcode_library = "config.txt"
 libraries = Library("config.txt")
-print(libraries.barcode_library)
+#print(libraries.barcode_library)
 

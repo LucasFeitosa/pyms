@@ -29,7 +29,7 @@ class Config:
 		for line in f:
 			
 			if "[barcodes]" in line or reading_barcodes:
-				print("here")
+				#print("here")
 				if not reading_barcodes:
 					line = next(f)
 					reading_barcodes = True
@@ -58,7 +58,7 @@ class Config:
 			elif "[primers]" in line or reading_primers:
 				if not reading_primers:
 					line = next(f)
-					print(line.rstrip().split("_"))
+					#print(line.rstrip().split("_"))
 					#print(a)
 					if re.match("F", line.rstrip().split("_")[1]):
 						previous_orientation = "F"
@@ -69,7 +69,7 @@ class Config:
 				#print(line)
 				if len(line) > 1:
 					current_orientation = line.rstrip().split("_")[1].split(" ")[0]
-					print(current_orientation)
+					#print(current_orientation)
 					line = line.rstrip().split(" ")
 				
 				if current_orientation == previous_orientation and len(line) > 1:
@@ -121,10 +121,10 @@ class Config:
 		foward_list = primer_list[0]
 		reverse_list = primer_list[1]
 		for foward_primer in foward_list:
-			print(foward_primer)
+			#print(foward_primer)
 			for reverse_primer in reverse_list:
 				if re.match(foward_primer[0][:-1],reverse_primer[0][:-1]):
-					print(reverse_primer)
+					#print(reverse_primer)
 					self._primer_config[foward_primer[0][:-2]] = [foward_primer[1], reverse_primer[1]]
 		
 	
