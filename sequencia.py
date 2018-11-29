@@ -12,9 +12,16 @@ class Sequencia:
 		#self.motif =  motif
 		qualidade = 0
 
+	def __str__(self):
+		return "\n--------#-----------\nSequence: {0}\nPrimers: {1}\nBarcodes: {2}"\
+		.format(self.seq, self.primers, self.barcodes)
+
 	@property
 	def seq(self):
 		return self._seq
+
+	def __repr__(self):
+		return str(self)
 
 	@seq.setter
 	def seq(self, seq):

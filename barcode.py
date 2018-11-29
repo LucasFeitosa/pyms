@@ -9,7 +9,10 @@ class Barcode():
 		self.barcodes_seq = barcodes_seq
 
 	def __str__(self):
-		return "Barcodes_id: {0},\nSeq: {1}".format(self.barcodes_id, self.barcodes_seq)
+		return "\n\tBarcode id: {0},\n\tSeq barcode: {1}".format(self.barcodes_id, self.barcodes_seq)
+
+	def __repr__(self):
+		return str(self)
 
 	@property
 	def barcodes_id(self):

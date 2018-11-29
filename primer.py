@@ -11,7 +11,7 @@ class Primer():
 		self.name = name
 
 	def __str__(self):
-		return "Foward: {0},\nReverse: {1}\n,Name: {2}".format(self.forward, self.reverse, self.name)
+		return "\n\tFoward: {0}\n\tReverse: {1}\n\tPrimer id: {2}".format(self.forward, self.reverse, self.name)
 
 	@property
 	def forward(self):
