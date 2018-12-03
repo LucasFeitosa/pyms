@@ -1,27 +1,27 @@
 
 
 class Individuo:
-	barcode = ''
-	nome = ''
-	sequencias = []
-	locus = []
 
-	def __init__(self, name = 'Ind', barcode = 'Nobarcode'):
-		self.barcode = barcode
-		self.nome = name
-		self.sequencias = []
-		self.locus = []
-	def get_barcode(self):
-		return self.barcode
+	def __init__(self, identifier, sequencia):
+		self.identifier = identifier
+		self.sequencias = sequencia
 
-	def set_sequencias(self, sequencia):
-		self.sequencias.append(sequencia)
+	@property
+	def identifier(self):
+		return self._identifier
 
-	def get_sequencias(self):
-		return self.sequencias
+	@identifier.setter
+	def identifier(self, identifier):
+		self._identifier = identifier
 
-	def set_locus(self, locus):
-		self.locus.append(locus)
+	@property
+	def sequencias(self):
+		return self._sequencias
 
-	def get_locus(self):
-    return self.locus
+	@sequencias.setter
+	def sequencias(self, sequencia):
+		try:
+			self._sequencias.append(sequencia)
+		except AttributeError:
+			self._sequencias = []
+			self._sequencias.append(sequencia)
