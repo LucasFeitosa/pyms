@@ -4,6 +4,12 @@ from primer import Primer
 from barcode import Barcode
 
 
+
+def reader(file_name):
+	for line in f:
+
+		if "[barcodes]" in line or reading_barcodes:
+
 class Config:
 
 	def __init__(self, file_name):

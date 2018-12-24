@@ -42,7 +42,7 @@ with open("R_2018_10_31_14_32_40_user_SN2-1-MacVMic_Auto_user_SN2-1-MacVMic_114.
 			#barcodes.append(ind_name)
 			#barcodes.append(seq[-tam_bcode:])
 			#print(ind_name)
-			#objetos e sequencias prontas.
+			#objetos barcode e primer prontos.
 			sequence = Sequencia(qual, seq, config)
 			barcodes.append(config.barcode_config[seq[:tam_bcode]])
 			barcodes.append(seq[:tam_bcode])
