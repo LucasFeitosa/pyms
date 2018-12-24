@@ -1,5 +1,7 @@
 import re
 import itertools
+from primer import Primer
+from barcode import Barcode
 
 
 class Config:

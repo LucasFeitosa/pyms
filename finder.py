@@ -4,7 +4,6 @@ from reader import Config
 from Bio.SeqIO.QualityIO import FastqGeneralIterator
 
 #def read_sequences():
-''' Os primers F tiveram uma taxa de erro ~43% maior que os primers R, proporção similar à dos erros do barcode P1 em relação ao A, reforçando a hipótese de que a taxa de erro no final das sequências é maior. Talvez um próximo passo possa ser verificar como varia o score das bases ao longo da sequência. '''
 config = Config("config.txt")
 #print("nope")
 count = 0
@@ -23,19 +22,17 @@ with open("R_2018_10_31_14_32_40_user_SN2-1-MacVMic_Auto_user_SN2-1-MacVMic_114.
 	for title, seq, qual in FastqGeneralIterator(in_handle):
 		#count += 1
 		total_len += len(seq)
-		#print(title)
-		 #getting the size of barcode
-		#for individuo, barcodes in config.barcode_config.items():
-		#print(seq[-tam_bcode:])
-		#print(seq[:tam_bcode])
-		#print(seq)
 
-		#print(tam_bcode)
-		if seq[:tam_bcode] in config.barcode_config.keys() and seq[-tam_bcode:] in config.barcode_config.keys():
 
-			ind_name = config.barcode_config[seq[:tam_bcode]] + config.barcode_config[seq[-tam_bcode:]]
+			#usando as sequencias dos barcodes como chave do dicionário.
+			#função para encontrar o barcode nas seqs
+			#função quebrar a sequencia
+			#função monta barcodes
+			#função monta primers
+			#função monta sequencias
 
 			if id_name in sequencias_individuos.keys():
+
 
 			else:
 
@@ -45,6 +42,8 @@ with open("R_2018_10_31_14_32_40_user_SN2-1-MacVMic_Auto_user_SN2-1-MacVMic_114.
 			#barcodes.append(ind_name)
 			#barcodes.append(seq[-tam_bcode:])
 			#print(ind_name)
+			#objetos e sequencias prontas.
+			sequence = Sequencia(qual, seq, config)
 			barcodes.append(config.barcode_config[seq[:tam_bcode]])
 			barcodes.append(seq[:tam_bcode])
 			barcodes.append(config.barcode_config[seq[-tam_bcode:]])
@@ -67,7 +66,32 @@ with open("R_2018_10_31_14_32_40_user_SN2-1-MacVMic_Auto_user_SN2-1-MacVMic_114.
 	#return sequencias_list
 
 
+def sequence_cleaner(sequence, barcodes, primers):
+
+	sequence, *barcodes = barcode_remover(sequence, barcodes)
 
 
+
+def barcode_finder(sequence, barcode_dict):
+
+	if sequence[:tam_bcode] in barcode_dict.keys() and sequence[-tam_bcode:] in barcode_dict.keys():
+		ind_name = barcode_dict[seq[:tam_bcode]] + barcode_dict[seq[-tam_bcode:]]
+		barcode_one = sequence[:tam_bcode]
+		barcode_two = sequence[-tam_bcode:]
+
+	return barcode_one, barcode_two
+
+
+
+def barcode_remover(sequence, barcodes):
+	print(barcodes)
+	barcode_one, barcode_two =  barcode_finder(sequence, barcodes)
+	tam_barcode = len(barcode_one)
+	clean_barcode_sequence = sequence[tam_barcode:len(sequence) + tam_barcode]
+
+	print(clean_barcode_sequence)
+	return clean_barcode_sequence, barcode_one, barcode_two
+
+def primer_finder():
 
 #print(libraries)

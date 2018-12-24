@@ -2,7 +2,47 @@ from primer import Primer
 from barcode import Barcode
 class Sequencia:
 
-	def __init__(self, primer, barcode, seq):
+	def __init__(self, qual, seq, type, id):
+
+		self.qual = qual
+		self.seq = seq
+		self.type = type
+		self.id = id
+
+	@property
+	def qual(self):
+		return self._qual
+
+	@qual.setter
+	def qual(self, qual):
+		self._qual = qual
+
+	@property
+	def seq(self):
+		return self._seq
+
+	@qual.setter
+	def seq(self, seq):
+		self._seq = seq
+
+	@property
+	def type(self):
+		return self._type
+
+	@qual.setter
+	def type(self, type, args):
+		self._type = type
+			#call function to break seq, and ids.
+
+	@property
+	def id(self):
+		return self._id
+
+	@qual.setter
+	def id(self, id):
+		self._id = id
+
+'''	def __init__(self, primer, barcode, seq):
 		#print(primer_library)
 		#print("Primer: {}".format(primer_library))
 		#print("Barcode: {}".format(barcode_library))
@@ -44,4 +84,4 @@ class Sequencia:
 
 	#@motif.setter
 	#def motif(self, motif):
-	#	self._motif = motif
+	#	self._motif = motif '''
