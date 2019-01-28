@@ -1,8 +1,21 @@
 
 
-class Primer():
+class Primer(Sequencia):
 
-	def __init__(self, forward, reverse, name):
+
+	def __init__(self,orientation):
+
+		self.orientation = orientation
+
+	@property
+	def orientation(self):
+		return self._orientation
+
+	@qual.setter
+	def orientation(self, orientation):
+		self._orientation = orientation
+
+'''	def __init__(self, forward, reverse, name):
 
 
 
@@ -39,4 +52,4 @@ class Primer():
 	@name.setter
 	def name(self, name):
 		self._name = name
-		#print("Name {}".format(self._id))
+		#print("Name {}".format(self._id))'''

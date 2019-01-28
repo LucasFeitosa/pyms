@@ -1,8 +1,22 @@
 
 
-class Barcode():
+class Barcode(Sequencia):
 
-	def __init__(self, barcodes_id, barcodes_seq):
+	def __init__(self, position):
+
+		self.position = position
+		self.barcode_seq = barcode_seq
+
+	@property
+	def position(self):
+		return self._position
+
+	@qual.setter
+	def position(self, position):
+		self._position = position
+
+
+'''	def __init__(self, barcodes_id, barcodes_seq):
 		#print(barcode_id)
 		#print(barcodes_seq)
 		self.barcodes_id = barcodes_id
@@ -28,4 +42,4 @@ class Barcode():
 
 	@barcodes_seq.setter
 	def barcodes_seq(self, barcodes_seq):
-		self._barcodes_seq = barcodes_seq
+		self._barcodes_seq = barcodes_seq'''
