@@ -2,3 +2,11 @@ venv
 __pycache__/
 .individuo.py.kate-swp
 R_2018_10_31_14_32_40_user_SN2-1-MacVMic_Auto_user_SN2-1-MacVMic_114.basecaller.fastq
+
+pdfs/
+
+\.idea/dictionaries/lucas\.xml
+
+\.idea/encodings\.xml
+
+\.vscode/settings\.json
